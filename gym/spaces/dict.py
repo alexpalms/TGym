@@ -50,6 +50,9 @@ class Dict(Space):
     def sample(self):
         return OrderedDict([(k, space.sample()) for k, space in self.spaces.items()])
 
+    def __getitem__(self, key):
+        return self.spaces[key]
+
     def contains(self, x):
         if not isinstance(x, dict) or len(x) != len(self.spaces):
             return False
